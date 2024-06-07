@@ -21,8 +21,8 @@ class HomeTab extends StatelessWidget {
           children: [
             Search_Bar(),
             ImageCarousel(imageUrls: imageUrls),
-            CategoriesSection(),
-            FeaturedProductsSection(),
+            ProductDisplaySection(),
+            // FeaturedProductsSection(),
             PromotionalBanner(),
           ],
         ),

@@ -1,9 +1,10 @@
-import 'package:devfaru_eccomerce/modules/customer/bindings/customer_binding.dart';
-import 'package:devfaru_eccomerce/modules/customer/views/customer_home_view.dart';
+import 'package:devfaru_eccomerce/modules/authentication/bindings/auth_binding.dart';
+import 'package:devfaru_eccomerce/modules/authentication/view/auth_page.dart';
 import 'package:devfaru_eccomerce/modules/dashboard/bindings/dashboard_bindings.dart';
 import 'package:devfaru_eccomerce/modules/dashboard/views/dashboard_view.dart';
-import 'package:devfaru_eccomerce/modules/seller/bindings/seller_binding.dart';
-import 'package:devfaru_eccomerce/modules/seller/views/seller_dashboard_view.dart';
+import 'package:devfaru_eccomerce/modules/product/bindings/product_binding.dart';
+import 'package:devfaru_eccomerce/modules/product/view/product_card.dart';
+import 'package:devfaru_eccomerce/modules/product/view/product_page.dart';
 import 'package:devfaru_eccomerce/modules/splash/splash_bindings.dart';
 import 'package:devfaru_eccomerce/modules/splash/splash_view.dart';
 import 'package:get/get.dart';
@@ -17,19 +18,20 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
+      name: AppRoutes.LOGIN,
+      page: () => AuthPage(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
       name: AppRoutes.DASHBOARD,
       page: () => DashboardView(),
       binding: DashboardBinding(),
     ),
     GetPage(
-      name: AppRoutes.CUSTOMER_HOME,
-      page: () => CustomerHomeView(),
-      binding: CustomerBinding(),
+      name: AppRoutes.ADDPRODUCT,
+      page: () => ProductPage(),
+      binding: ProductBinding(),
     ),
-    GetPage(
-      name: AppRoutes.SELLER_DASHBOARD,
-      page: () => SellerDashboardView(),
-      binding: SellerBinding(),
-    ),
+
   ];
 }

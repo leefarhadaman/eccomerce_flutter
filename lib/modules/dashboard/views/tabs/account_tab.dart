@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:devfaru_eccomerce/routes/app_routes.dart';
 
 class AccountTab extends StatelessWidget {
   @override
@@ -11,7 +14,10 @@ class AccountTab extends StatelessWidget {
             SizedBox(height: 24),
             buildSectionTitle(context, 'Profile'),
             buildOption(context, 'Edit Profile', onPressed: () {
-              // Navigate to profile editing screen
+              _checkAuthAndNavigate(AppRoutes.ADDPRODUCT);
+            }),
+            buildOption(context, 'Add Product', onPressed: () {
+              _checkAuthAndNavigate(AppRoutes.ADDPRODUCT);
             }),
             SizedBox(height: 24),
             buildSectionTitle(context, 'Navigation'),
@@ -47,15 +53,18 @@ class AccountTab extends StatelessWidget {
               // Navigate to credit score check screen
             }),
             SizedBox(height: 24),
-            buildSectionTitle(context, 'Latest Updates and Offers'),
+            buildSectionTitle(context, 'Other Options'),
             buildOption(context, 'Tap for latest updates and offers',
                 onPressed: () {
-              // Navigate to updates and offers screen
+              // Navigate to latest updates screen
             }),
             SizedBox(height: 24),
             buildSectionTitle(context, 'Account Settings'),
             buildOption(context, 'DevFaru Plus', onPressed: () {
               // Navigate to DevFaru Plus screen
+            }),
+            buildOption(context, 'Edit Profile', onPressed: () {
+              // Navigate to edit profile screen
             }),
             buildOption(context, 'Save Cards & Wallet', onPressed: () {
               // Navigate to save cards & wallet screen
@@ -69,11 +78,19 @@ class AccountTab extends StatelessWidget {
             buildOption(context, 'Notification Settings', onPressed: () {
               // Navigate to notification settings screen
             }),
-            SizedBox(height: 24),
           ],
         ),
       ),
     );
+  }
+
+  void _checkAuthAndNavigate(String route) {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Get.toNamed(route);
+    } else {
+      Get.toNamed(AppRoutes.LOGIN);
+    }
   }
 
   Widget buildSectionTitle(BuildContext context, String title) {

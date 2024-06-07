@@ -10,6 +10,6 @@ class SplashController extends GetxController {
 
   void _navigateToDashboard() async {
     await Future.delayed(Duration(seconds: 3));
-    Get.offNamed(AppRoutes.DASHBOARD);
+    Get.offNamed(AppRoutes.LOGIN);
   }
 }

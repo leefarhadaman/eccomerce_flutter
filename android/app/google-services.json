@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "757821486183",
+    "project_id": "ecomerce-f8bfb",
+    "storage_bucket": "ecomerce-f8bfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757821486183:android:7608e1c709088532b610c2",
+        "android_client_info": {
+          "package_name": "com.example.devfaru_eccomerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNAmo0UAD9cR1s-lNKKD47mPczb42GcJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
