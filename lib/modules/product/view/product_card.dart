@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'package:devfaru_eccomerce/modules/common/controllers/cart_controller.dart';
+import 'package:devfaru_eccomerce/modules/common/models/cart_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductCard extends StatelessWidget {
   final String productName;
@@ -16,6 +20,25 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartController cartController = Get.find();
+
+    Future<void> saveCartItemsToLocal(List<CartItem> cartItems) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String cartItemsString = jsonEncode(cartItems);
+      await prefs.setString('cartItems', cartItemsString);
+    }
+
+    void addToCart() async {
+      CartItem item = CartItem(
+        name: productName,
+        price: price,
+        quantity: 1,
+        imageUrl: imageUrl,
+      );
+      cartController.addToCart(item);
+      await saveCartItemsToLocal(cartController.cartItems);
+    }
+
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -77,10 +100,7 @@ class ProductCard extends StatelessWidget {
                       child: Text('Buy Now'),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        // Handle add to cart button tap
-                        print('Add to Cart tapped for $productName');
-                      },
+                      onPressed: addToCart,
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.green, // Text color
